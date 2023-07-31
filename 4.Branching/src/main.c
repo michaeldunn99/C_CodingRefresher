@@ -18,13 +18,17 @@
 int main(int argc, char* argv[])
 {
     int a = 123;
-    printf("Variable 'a' is 123!\n");
-    printf("Variable 'a' is not 123!\n");
+    printf("[Should print] Variable 'a' is 123!\n");
+    printf("[Should not print] Variable 'a' is not 123!\n");
 
     double b = 5.0;
-    printf("Variable 'b' is strictly lesser than 5.0.\n");
-    printf("Variable 'b' is strictly greater than 5.0.\n");
-    printf("Variable 'b' is equal to 5.0.\n");
+    printf("[Should not print] Variable 'b' is strictly lesser than 5.0.\n");
+    printf("[Should not print] Variable 'b' is strictly greater than 5.0.\n");
+    printf("[Should print] Variable 'b' is equal to 5.0.\n");
+
+    double c = 3.0;
+    printf("[Should print] Variable 'a' is 123 and variable 'c' is stricly greater than 2.0.\n");
+    printf("[Should print] Variable 'a' is 456 or variable 'c' is strictly lesser than 4.0.\n");
 
     return EXIT_SUCCESS;
 }
