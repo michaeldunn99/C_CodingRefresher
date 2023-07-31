@@ -23,9 +23,11 @@ int main(int argc, char* argv[])
     // Execute the following statements 10 times, using a 'while' loop.
     printf("[While loop] I should be printed 10 times.\n");
 
-    
     // Execute the following statements 10 times, using a 'for' loop.
     printf("[For loop] I should be printed 10 times.\n");
+
+    // Execute the following statements 10 times, using a 'while' loop.
+    printf("[For loop] I should be printed 10 times, I will skip the 6th iteration.\n");
 
     return EXIT_SUCCESS;
 }
