@@ -2,9 +2,10 @@
  * @file main.c
  * @author Ludovic Capelli (l.capelli@epcc.ed.ac.uk)
  * @brief This example is for you to practice pointers.
- * @details This program calls a function to multiply integers. However, this
- * function is not defined yet, you must define it. Similarly for a factorial
- * function that you must define.
+ * @details This exercise manipulates pointers, however, not all statememnts are
+ * written so you have to fill the gaps. Among other things, you need to 
+ * implement a function that multiply by the 2 the value of a variable through
+ * its pointer.
  * To see the compilation and execution commands, refer to the first exercise.
  * You are strongly encouraged to type them yourself, rather than copy/pasting,
  * as it may help you memorise.
