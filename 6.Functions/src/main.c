@@ -11,7 +11,6 @@
  **/
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 /**
  * @brief Do not worry about understanding the "int main(...)" line for now. You
