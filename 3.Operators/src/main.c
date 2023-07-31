@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Ludovic Capelli (l.capelli@epcc.ed.ac.uk)
- * @brief This example is for you to practice variable declarations.
+ * @brief This example is for you to practice arithmetic operators.
  * @details This program performs a few operations on a variable that you need
  * to declare. In addition, you have to write operations yourself, some of which
  * are already provided but you need to rewrite using combined operators.
