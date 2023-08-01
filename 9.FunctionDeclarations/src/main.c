@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
      * and move the definition of function add_numbers below the function main.
      */
     int sum = add_numbers(123, 456);
+    printf("The sum of 123 and 456 is %d.\n", sum);
 
     return EXIT_SUCCESS;
 }
