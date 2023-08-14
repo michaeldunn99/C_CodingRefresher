@@ -2,8 +2,6 @@
  * @file main.c
  * @author Ludovic Capelli (l.capelli@epcc.ed.ac.uk)
  * @brief This example is for you to practice arrays.
- * @details This exercise makes you create 10-integer arrays, then use them to
- * calculate factorial or 9 (= 362,800)
  * To see the compilation and execution commands, refer to the first exercise.
  * You are strongly encouraged to type them yourself, rather than copy/pasting,
  * as it may help you memorise.
