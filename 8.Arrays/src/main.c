@@ -43,5 +43,11 @@ int main(int argc, char* argv[])
 
     // Free the array you just dynamically allocated.
 
+    // Allocate a 2D array of 5 x 3 elements.
+    
+    /* Write a function that receives an array of 5 x 3 elements, and returns
+     * the sum of all elements.
+     */
+
     return EXIT_SUCCESS;
 }
