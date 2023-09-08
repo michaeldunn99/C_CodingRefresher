@@ -143,8 +143,8 @@ int main(int argc, char* argv[])
 
                 /**
                  * @brief If the number of links is strictly greater than 0,
-                 * add (1 / link_count) to the rank of the target webpage.
-                 * 
+                 * add (1 / link_count)th of the source webpage's previous rank
+                 * to the current rank of the target webpage.
                  */
                 exit(-1);
             
