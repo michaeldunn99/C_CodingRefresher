@@ -17,6 +17,9 @@
  * @brief Do not worry about understanding the "int main(...)" line for now. You
  * will learn it in due time, in a different exercise.
  */
+
+void multiply_by_2(int* b);
+
 int main(int argc, char* argv[])
 {
     // Declare a pointer variable 'pointer_a' that points to variable 'a'.
@@ -27,9 +30,15 @@ int main(int argc, char* argv[])
     /*
      * Implement a function 'multiply_by_2' that takes a pointer on an integer
      * and update the value of the variable pointed by multiplying it by 2.
-     */
+     * (Implemented below)
+     */ 
     multiply_by_2(pointer_a);
     printf("New value of variable 'a' is %d.\n", a);
 
     return EXIT_SUCCESS;
+}
+
+void multiply_by_2(int* b)
+{
+    *b *= 2;
 }
