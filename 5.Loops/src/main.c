@@ -22,13 +22,32 @@
 int main(int argc, char* argv[])
 {
     // Execute the following statements 10 times, using a 'while' loop.
-    printf("[While loop] I should be printed 10 times.\n");
+    int i = 0;
+    while (i < 10)
+    {
+        printf(" Iteration %d - [While loop] I should be printed 10 times.\n", i+1);
+        i++;
+    }
+    // printf("[While loop] I should be printed 10 times.\n");
 
     // Execute the following statements 10 times, using a 'for' loop.
-    printf("[For loop] I should be printed 10 times.\n");
+    for (i = 0; i < 10; i++)
+    {
+        printf("Iteration %d [For loop] I should be printed 10 times.\n", i+1); 
+    }
+    // printf("[For loop] I should be printed 10 times.\n");
 
-    // Execute the following statements 10 times, using a 'while' loop.
-    printf("[For loop] I should be printed 10 times, I will skip the 6th iteration.\n");
+    for (i = 0; i < 10; i++)
+    {
+        if (i == 5)
+        {
+            continue;
+        }
+        printf(" Iteration %d - [For loop] I should be printed 10 times, I will skip the 6th iteration.\n", i+1);
+
+    }
+
+    // printf("[For loop] I should be printed 10 times, I will skip the 6th iteration.\n");
 
     /*
      * For some reason, you have a loop that repeats indefinitely until it
@@ -42,8 +61,12 @@ int main(int argc, char* argv[])
      */
     
     int a = 0;
-    while(true && a < 5)
+    while(true)
     {
+        if (a == 5)
+        {
+            break;
+        }
         printf("Value of variable 'a' = %d.\n", a);
         a++;
     }
