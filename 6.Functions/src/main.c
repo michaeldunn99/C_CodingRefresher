@@ -16,6 +16,13 @@
  * @brief Do not worry about understanding the "int main(...)" line for now. You
  * will learn it in due time, in a different exercise.
  */
+
+//Declare multiply function
+int multiply_ints(int a, int b);
+
+//Declare factorial function
+int calculate_factorial_of(int n); 
+
 int main(int argc, char* argv[])
 {
     int a = 123;
@@ -33,4 +40,22 @@ int main(int argc, char* argv[])
     printf("The factorial of %d is %d.\n", d, factorial);
 
     return EXIT_SUCCESS;
+}
+
+//Define Multiply_ints
+
+int multiply_ints(int a, int b)
+{
+    return a*b;
+}
+
+// Define factorial function
+int calculate_factorial_of(int n)
+{
+    int fact_n = n;
+    for (int i = 0; i < n - 1; i++)
+    {
+        fact_n *= (n - (i+1));
+    }
+    return fact_n;
 }
