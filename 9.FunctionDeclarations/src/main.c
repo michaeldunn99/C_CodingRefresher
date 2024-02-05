@@ -10,15 +10,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int add_numbers(int a, int b)
-{
-    return a + b;
-}
+// int add_numbers(int a, int b)
+// {
+//     return a + b;
+// }
 
 /**
  * @brief Do not worry about understanding the "int main(...)" line for now. You
  * will learn it in due time, in a different exercise.
  */
+
+int add_numbers(int a, int b); 
+
 int main(int argc, char* argv[])
 {
     /* Provide the declaration of function add_numbers above the function main,
@@ -28,4 +31,9 @@ int main(int argc, char* argv[])
     printf("The sum of 123 and 456 is %d.\n", sum);
 
     return EXIT_SUCCESS;
+}
+
+int add_numbers(int a, int b)
+{
+     return a + b;
 }
