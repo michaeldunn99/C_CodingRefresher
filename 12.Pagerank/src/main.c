@@ -10,6 +10,8 @@
  **/
 #include <stdio.h>
 #include <stdlib.h>
+#include "constants.h"
+
 
 /**
  * @brief This function contains the architecture of a pagerank application.
@@ -23,11 +25,12 @@ int main(int argc, char* argv[])
 {
     /**
      * @brief Use two defines, "SIZE" = 5 and "DUMP_FACTOR" = 0.85.
+     * @brief MD Answer - defined in "constants.h" using an inclusion guard
+     * 
      * @details SIZE is the number of vertices in the graph (a.k.a: the
      * "graph order"). DUMP_FACTOR is the coefficient controlling the extent to
      * which final ranks are influenced by spreading.
      **/
-    exit(-1);
 
     /**
      * @brief Create a 2D array of SIZE x SIZE integers, named adjacency_matrix.
