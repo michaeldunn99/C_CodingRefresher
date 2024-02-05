@@ -13,6 +13,8 @@
 #include "constants.h"
 
 
+void initialise_adjacency_matrix(int** adjacency_matrix);
+
 /**
  * @brief This function contains the architecture of a pagerank application.
  * @details You have to declare and define the variables and functions used
@@ -37,8 +39,24 @@ int main(int argc, char* argv[])
      * @details If adjacency_matrix[a][b] = 1, it means that page 'a' has a
      * link to page 'b'. Otherwise, it is 0 and means there is no link from
      * page 'a' to page 'b'.
+     * @brief MD Answer - adjacency matrix declared below, dynamically
      **/
-    exit(-1);
+
+    // Adjacency matrix - dynamically defined
+     
+    int** adjacency_matrix = (int **) malloc (SIZE * sizeof(int*));
+    if (adjacency_matrix == NULL)
+    {
+        return -1;
+    }
+    for (int i = 0; i < SIZE; i++)
+    {
+        adjacency_matrix[i] = (int*)malloc(SIZE * sizeof(int));
+        if (adjacency_matrix[i] == NULL)
+        {
+            return -1;
+        }
+    }
 
     /**
      * @brief Declare and define the function initialise_adjacency_matrix.
@@ -51,7 +69,11 @@ int main(int argc, char* argv[])
      * 0 0 1 1 1
      * 0 0 0 1 1
      * 0 0 0 0 1
+     * 
+     * 
+     * @details - MD Answer: intialized in function below.
      **/
+
     initialise_adjacency_matrix(adjacency_matrix);
 
     /**
@@ -182,4 +204,29 @@ int main(int argc, char* argv[])
         //////////////////////
 
     return EXIT_SUCCESS;
+}
+
+/**
+ * @brief Function that initializes the adjacency matrix
+ * @details This function accepts as parameter an int ** pointer to a 2x2 matrix and
+ * and sets the upper triangular values to 1 and the strict lower triangular values
+ * to 0. 
+*/
+
+void initialise_adjacency_matrix(int** adjacency_matrix)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (i > j)
+            {
+                adjacency_matrix[i][j] = 0;
+            }
+            else
+            {
+                adjacency_matrix[i][j] = 1;
+            }
+        }
+    }
 }
