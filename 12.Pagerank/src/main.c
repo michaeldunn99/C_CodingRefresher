@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
      * dimension       | [1][0]  [1][1]
      * my_arr[X][...]  | [2][0]  [2][1]
      *  
-     * @details -  MD Answer: Function described in helper_functions.c
+     * @details -  MD Answer: Function described below main function
      *          
      **/
     print_2D_array(adjacency_matrix);
@@ -158,8 +158,8 @@ int main(int argc, char* argv[])
      * elements, and call it to print the values of the rank array.
      * 
      * @details - MD Answer: 
-     *          - Function defined in helper_functions.c
-     *          - Function declared in helper_function_declarations.h
+     *          - Function defined below main function 
+     *          
      **/
     printf("Initial ranks:\n");
     print_ranks(ranks);
@@ -262,8 +262,7 @@ int main(int argc, char* argv[])
      * new_value = current_value x DUMP_FACTOR + (1.0 - DUMP_FACTOR) / SIZE.         * 
      * 
      * @details - MD Answer:
-    *           - Function delcared in helper_function_declarations.h
-    *           - Function defined in helper_functions.c
+    *           - Function defined below main function
      **/
 
     normalize_ranks(ranks);
