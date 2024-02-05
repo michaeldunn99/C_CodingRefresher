@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
      * dimension       | [1][0]  [1][1]
      * my_arr[X][...]  | [2][0]  [2][1]
      *  
-     * @details - Function described in helper_functions.c
+     * @details -  MD Answer: Function described in helper_functions.c
      *          
      **/
     print_2D_array(adjacency_matrix);
@@ -99,65 +99,105 @@ int main(int argc, char* argv[])
      * @details The array "ranks" will contain the final rank of each page,
      * whereas "prev_ranks" will hold ranks from previous iterations that are
      * needed in calculations.
+     * 
+     * @details - MD Answer: "ranks" and "prev_ranks" defined below
      **/
-    exit(-1);
+
+    double* ranks = (double*) malloc(sizeof(double) * SIZE);
+    if (ranks == NULL)
+    {
+        return -1;
+    }
+
+    double* prev_ranks = (double*) malloc(sizeof(double) * SIZE);
+    if (prev_ranks == NULL)
+    {
+        return -1;
+    }
 
     /**
      * @brief Initialise array of ranks to 1 / SIZE.
      * @details By default, 1 / SIZE is seen as a division of integers and will
      * result in 0. To make sure that the terms are treated as doubles, we will
      * cast them as follows: 1.0 / (double)SIZE.
+     * 
+     * @details MD Answer - Ranks initialised below as required.
      **/
-    exit(-1);
+
+    for (int j = 0; j < SIZE; j++)
+    {
+        ranks[j] = 1.0 / (double) SIZE;
+    }
 
     /**
      * @brief Declare and define a function that prints an array of SIZE
      * elements, and call it to print the values of the rank array.
+     * 
+     * @details - MD Answer: 
+     *          - Function defined in helper_functions.c
+     *          - Function declared in helper_function_declarations.h
      **/
-   // UNCOMMENT WHEN APPROPRIATE print_ranks(ranks);
+    print_ranks(ranks);
 
     /**
      * @brief Create a loop for <MAX_ITERATION> iterations.
      **/
-    exit(-1);
 
-        //////////////////////
-        // BEGIN: MAIN LOOP //
-        //////////////////////
+    //////////////////////
+    // BEGIN: MAIN LOOP //
+    //////////////////////
+    for (int k = 0; k < MAX_ITERATIONS; k++)
+    {
         /**
-         * @brief Copy the values from array <ranks> to array <prev_ranks>.
-         **/
-        exit(-1);
-
+        * @brief Copy the values from array <ranks> to array <prev_ranks>.
+        **/
+        for (int l = 0; l < SIZE; l++)
+        {
+            prev_ranks[l] = ranks[l];
+        }
+        
         /**
-         * @brief Reset the values of array <ranks> to 0.
-         **/
-        exit(-1);
-
+        * @brief Reset the values of array <ranks> to 0.
+        **/
+        for (l = 0; l < SIZE; l++)
+        {
+            ranks[l] = 0;
+        }
+        
         /**
          * @brief Create a loop of <SIZE> iterations.
          * @details We will assume that your iterator is named "i", it will
          * represent the source webpage.
          **/
 
-            //////////////////////
-            // BEGIN: LOOP I    //
-            //////////////////////
+        //////////////////////
+        // BEGIN: LOOP I    //
+        //////////////////////
+        
+        for (i = 0; i < SIZE; i++)
+        {
             /**
              * @brief Create a loop of <SIZE> iterations.
              * @details We will assume that your iterator is named "j", it will
              * represent the target webpage.
              **/
-            exit(-1);
+        
+            //////////////////////
+            // BEGIN: LOOP J    //
+            //////////////////////
 
-                //////////////////////
-                // BEGIN: LOOP J    //
-                //////////////////////
+            for (j = 0; j < SIZE; j++)
+            {
+                
                 /**
-                 * @brief If the webpage "i" has no link to webpage "j", skip
-                 * this iteration.
-                 **/
-                exit(-1);
+                * @brief If the webpage "i" has no link to webpage "j", skip
+                * this iteration.
+                **/
+                if (adjacency_matrix[[i][j]] == 0)
+                {
+                    continue;
+                }
+
 
                 /**
                  * @brief Declare and define function count_links_from_page.
@@ -167,46 +207,66 @@ int main(int argc, char* argv[])
                  * returns the number of links obtained.
                  */
 
-                // UNCOMMENT WHEN APPROPIRATE int link_count = count_links_from_page(adjacency_matrix, i);
+                int link_count = count_links_from_page(adjacency_matrix, i);
 
                 /**
                  * @brief If the number of links is strictly greater than 0,
                  * add (1 / link_count)th of the source webpage's previous rank
                  * to the current rank of the target webpage.
                  */
-                exit(-1);
-            
-                //////////////////////
-                // END: LOOP J      //
-                //////////////////////
 
+                if (link_count > 0)
+                {
+                    rank[j] += (1.0 / ((double) link_count)) * prev_rank[i]
+                }
+                
             //////////////////////
-            // END: LOOP I      //
-            //////////////////////
-
-        /**
-         * @brief Declare and define the function normalise_ranks.
-         * @details This function receives a 1D array of SIZE elements, and 
-         * updates the value of every element to:
-         * new_value = current_value x DUMP_FACTOR + (1.0 - DUMP_FACTOR) / SIZE.         * 
-         **/
-       // UNCOMMENT WHEN APPROPIRATE normalise_ranks(ranks);
-
-
-
-        /**
-         * @brief Calculate the sum of all ranks and prints the value obtained.
-         **/
-        exit(-1);
-        
-        /**
-         * @brief Print all ranks.
-         **/
-       // UNCOMMENT WHEN APPROPIRATE print_ranks(ranks);
+            // END: LOOP J      //
+            //////////////////////    
+            }
 
         //////////////////////
-        // END: MAIN LOOP   //
+        // END: LOOP I      //
         //////////////////////
+        }
+
+    /**
+     * @brief Declare and define the function normalise_ranks.
+     * @details This function receives a 1D array of SIZE elements, and 
+     * updates the value of every element to:
+     * new_value = current_value x DUMP_FACTOR + (1.0 - DUMP_FACTOR) / SIZE.         * 
+     * 
+     * @details - MD Answer:
+    *           - Function delcared in helper_function_declarations.h
+    *           - Function defined in helper_functions.c
+     **/
+
+    normalise_ranks(ranks);
+
+    /**
+     * @brief Calculate the sum of all ranks and prints the value obtained.
+     **/
+
+    double rank_sum = 0.00;
+    for (m = 0; m < SIZE; m++)
+    {
+        rank_sum += ranks[i];
+    }
+    printf("%.2f", rank_sum); 
+
+    
+    /**
+     * @brief Print all ranks.
+     **/
+
+    printf("Iteration %d - updated ranks:\n", k);
+    print_ranks(ranks);
+
+    //////////////////////
+    // END: MAIN LOOP   //
+    //////////////////////
+
+    }
 
     return EXIT_SUCCESS;
 }
