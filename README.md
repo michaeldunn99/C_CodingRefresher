@@ -1,3 +1,4 @@
-C Coding Refresher Exercises.
+ ## C Coding Refresher Exercises <h>
 
-Note: language for commit messages is inconsistent but generally "Complete Ex. X" / "Ex. X Complete" / "Completing Ex. X" indicates that exercise X has been completed.
+Note: 
+- Language for commit messages is inconsistent but generally "Complete Ex. X" / "Ex. X Complete" / "Completing Ex. X" indicates that Exercise X has been completed.
