@@ -11,8 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "constants.h"
-
-void initialise_adjacency_matrix(int** matrix);
+#include "helper_function_declarations.h"
 
 /**
  * @brief This function contains the architecture of a pagerank application.
@@ -26,7 +25,7 @@ int main(int argc, char* argv[])
 {
     /**
      * @brief Use two defines, "SIZE" = 5 and "DUMP_FACTOR" = 0.85.
-     * @brief MD Answer - defined in "constants.h" using an inclusion guard
+     * @details MD Answer - defined in "constants.h" using an inclusion guard
      * 
      * @details SIZE is the number of vertices in the graph (a.k.a: the
      * "graph order"). DUMP_FACTOR is the coefficient controlling the extent to
@@ -38,7 +37,7 @@ int main(int argc, char* argv[])
      * @details If adjacency_matrix[a][b] = 1, it means that page 'a' has a
      * link to page 'b'. Otherwise, it is 0 and means there is no link from
      * page 'a' to page 'b'.
-     * @brief MD Answer - adjacency matrix declared below, dynamically
+     * @details MD Answer - adjacency matrix declared below, dynamically
      **/
 
     // Adjacency matrix - dynamically defined
@@ -72,7 +71,7 @@ int main(int argc, char* argv[])
      * 0 0 0 0 1
      * 
      * 
-     * @details - MD Answer: intialized in function below.
+     * @details - MD Answer: intialized in function within helper_functions.c
      **/
 
     initialise_adjacency_matrix(adjacency_matrix);
@@ -88,7 +87,9 @@ int main(int argc, char* argv[])
      * The leftmost    | [0][0]  [0][1]  
      * dimension       | [1][0]  [1][1]
      * my_arr[X][...]  | [2][0]  [2][1]
-     *                 v
+     *  
+     * @details - Function described in helper_functions.c
+     *          
      **/
     print_2D_array(adjacency_matrix);
 
@@ -113,7 +114,7 @@ int main(int argc, char* argv[])
      * @brief Declare and define a function that prints an array of SIZE
      * elements, and call it to print the values of the rank array.
      **/
-    print_ranks(ranks);
+   // UNCOMMENT WHEN APPROPRIATE print_ranks(ranks);
 
     /**
      * @brief Create a loop for <MAX_ITERATION> iterations.
@@ -165,7 +166,8 @@ int main(int argc, char* argv[])
                  * connectivity matrix, and the source webpage considered. It
                  * returns the number of links obtained.
                  */
-                int link_count = count_links_from_page(adjacency_matrix, i);
+
+                // UNCOMMENT WHEN APPROPIRATE int link_count = count_links_from_page(adjacency_matrix, i);
 
                 /**
                  * @brief If the number of links is strictly greater than 0,
@@ -188,7 +190,9 @@ int main(int argc, char* argv[])
          * updates the value of every element to:
          * new_value = current_value x DUMP_FACTOR + (1.0 - DUMP_FACTOR) / SIZE.         * 
          **/
-        normalise_ranks(ranks);
+       // UNCOMMENT WHEN APPROPIRATE normalise_ranks(ranks);
+
+
 
         /**
          * @brief Calculate the sum of all ranks and prints the value obtained.
@@ -198,7 +202,7 @@ int main(int argc, char* argv[])
         /**
          * @brief Print all ranks.
          **/
-        print_ranks(ranks);
+       // UNCOMMENT WHEN APPROPIRATE print_ranks(ranks);
 
         //////////////////////
         // END: MAIN LOOP   //
@@ -207,26 +211,3 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
-/** 
- * @brief Function that initializes the adjacency matrix
- * @details This function accepts as parameter an int ** pointer to a 2x2 matrix and
- * and sets the upper triangular values to 1 and the strict lower triangular values
- * to 0. 
- * */ 
-void initialise_adjacency_matrix(int** matrix)
-{
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (i > j)
-            {
-                matrix[i][j] = 0;
-            }
-            else
-            {
-                matrix[i][j] = 1;
-            }
-        }
-    }
-}
