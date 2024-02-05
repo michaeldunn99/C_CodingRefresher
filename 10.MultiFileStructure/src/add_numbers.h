@@ -1,5 +1,5 @@
-#ifndef MY_FUNCTION_H
-#define MY_FUNNCTION_H
+#ifndef ADD_NUMBERS_H
+#define ADD_NUMBERS_H
 
 //Function declaration
 
