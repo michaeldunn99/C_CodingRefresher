@@ -9,6 +9,6 @@
 
     int count_links_from_page(int**matrix, int i);
 
-    void normalize_ranks(double * array);
+    void normalize_ranks(double* array);
 
 #endif

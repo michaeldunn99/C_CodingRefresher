@@ -10,8 +10,30 @@
  **/
 #include <stdio.h>
 #include <stdlib.h>
-#include "constants.h"
-#include "helper_function_declarations.h"
+#include <stddef.h>
+
+#ifndef CONSTANTS_H
+    #define CONSTANTS_H
+
+        #define SIZE 5
+        #define DUMP_FACTOR 0.85
+        #define MAX_ITERATIONS 10 
+#endif
+
+#ifndef HELPER_FUNTION_DECLARATIONS_H
+    #define HELPER_FUNTION_DECLARATIONS_H
+    
+    void initialise_adjacency_matrix(int** matrix);
+
+    void print_2D_array(int** matrix);
+
+    void print_ranks(double* ranks);
+
+    int count_links_from_page(int**matrix, int i);
+
+    void normalize_ranks(double* array);
+
+#endif
 
 /**
  * @brief This function contains the architecture of a pagerank application.
@@ -41,7 +63,7 @@ int main(int argc, char* argv[])
      **/
 
     // Adjacency matrix - dynamically defined
-     
+    
     int** adjacency_matrix = (int **) malloc (SIZE * sizeof(int*));
     //Check to make sure not NULL 
     if (adjacency_matrix == NULL)
@@ -51,7 +73,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < SIZE; i++)
     {
-        adjacency_matrix[i] = (int*)malloc(SIZE * sizeof(int));
+        adjacency_matrix[i] = (int*) malloc(SIZE * sizeof(int));
         if (adjacency_matrix[i] == NULL)
         {
             return -1;
@@ -102,14 +124,16 @@ int main(int argc, char* argv[])
      * 
      * @details - MD Answer: "ranks" and "prev_ranks" defined below
      **/
+    size_t size_of_ranks = SIZE;
 
-    double* ranks = (double*) malloc(sizeof(double) * SIZE);
+    double* ranks = (double*) malloc(sizeof(double) * size_of_ranks);
     if (ranks == NULL)
     {
         return -1;
     }
+    
 
-    double* prev_ranks = (double*) malloc(sizeof(double) * SIZE);
+    double* prev_ranks = (double*) malloc(sizeof(double) * size_of_ranks);
     if (prev_ranks == NULL)
     {
         return -1;
@@ -137,6 +161,7 @@ int main(int argc, char* argv[])
      *          - Function defined in helper_functions.c
      *          - Function declared in helper_function_declarations.h
      **/
+    printf("Initial ranks:\n");
     print_ranks(ranks);
 
     /**
@@ -151,17 +176,17 @@ int main(int argc, char* argv[])
         /**
         * @brief Copy the values from array <ranks> to array <prev_ranks>.
         **/
-        for (int l = 0; l < SIZE; l++)
-        {
-            prev_ranks[l] = ranks[l];
-        }
+       for (int a = 0; a < SIZE; a++)
+       {
+            prev_ranks[a] = ranks[a];
+       }
         
         /**
         * @brief Reset the values of array <ranks> to 0.
         **/
-        for (l = 0; l < SIZE; l++)
+        for (int m = 0; m < SIZE; m++)
         {
-            ranks[l] = 0;
+            ranks[m] = 0;
         }
         
         /**
@@ -174,7 +199,7 @@ int main(int argc, char* argv[])
         // BEGIN: LOOP I    //
         //////////////////////
         
-        for (i = 0; i < SIZE; i++)
+        for (int i = 0; i < SIZE; i++)
         {
             /**
              * @brief Create a loop of <SIZE> iterations.
@@ -186,14 +211,14 @@ int main(int argc, char* argv[])
             // BEGIN: LOOP J    //
             //////////////////////
 
-            for (j = 0; j < SIZE; j++)
+            for (int j = 0; j < SIZE; j++)
             {
                 
                 /**
                 * @brief If the webpage "i" has no link to webpage "j", skip
                 * this iteration.
                 **/
-                if (adjacency_matrix[[i][j]] == 0)
+                if (adjacency_matrix[i][j] == 0)
                 {
                     continue;
                 }
@@ -217,7 +242,7 @@ int main(int argc, char* argv[])
 
                 if (link_count > 0)
                 {
-                    rank[j] += (1.0 / ((double) link_count)) * prev_rank[i]
+                    ranks[j] += (1.0 / ((double) link_count)) * prev_ranks[i];
                 }
                 
             //////////////////////
@@ -241,18 +266,18 @@ int main(int argc, char* argv[])
     *           - Function defined in helper_functions.c
      **/
 
-    normalise_ranks(ranks);
+    normalize_ranks(ranks);
 
     /**
      * @brief Calculate the sum of all ranks and prints the value obtained.
      **/
 
     double rank_sum = 0.00;
-    for (m = 0; m < SIZE; m++)
+    for (int n = 0; n < SIZE; n++)
     {
-        rank_sum += ranks[i];
+        rank_sum += ranks[n];
     }
-    printf("%.2f", rank_sum); 
+    printf("Rank_sum: %.2f\n", rank_sum); 
 
     
     /**
@@ -267,7 +292,115 @@ int main(int argc, char* argv[])
     //////////////////////
 
     }
+    for (int q = 0; q < SIZE; q++)
+    {
+        free(adjacency_matrix[q]);
+    }
+    free(adjacency_matrix);
+    free(ranks);
+    free(prev_ranks);
+
 
     return EXIT_SUCCESS;
+}
+
+
+/** 
+ * @brief Function that initializes a matrix to upper-triangular form
+ * @details This function accepts as parameter an int ** pointer to a matrix of size SIZE*SIZE and
+ * and sets the upper triangular values to 1 and the strict lower triangular values
+ * to 0. 
+ * @param matrix - pointer to a matrix assumed to be of size SIZE x SIZE
+ * 
+ */ 
+void initialise_adjacency_matrix(int** matrix)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (i > j)
+            {
+                matrix[i][j] = 0;
+            }
+            else
+            {
+                matrix[i][j] = 1;
+            }
+        }
+    }
+}
+
+/** 
+ * @brief Function prints each entry the matrix
+ * @details This function accepts as parameter an int ** pointer to a matrix of size SIZE*SIZE and
+ * and prints each entry, taking a new line for each new row of the matrix. 
+ * @param matrix - Pointer to a matrix assumed to be of size SIZE x SIZE
+ * 
+ */
+void print_2D_array(int ** matrix)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+/** 
+ * @brief Function prints each entry of an array of doubles
+ * @details This function accepts as parameter an double * pointer to an array of size SIZE and
+ * and prints each entry to one line.
+ * @param array - Pointer to an array of type double, assumed to be of size SIZE
+ * 
+ */
+void print_ranks(double* array)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        printf("%.2f ", array[i]);
+    }
+    printf("\n\n");
+}
+
+
+/// @brief counts the number of links that a given page has with all other webpages. 
+/// @param matrix - pointer to a 2d array of integers (in this case the adjacency matrix)
+/// @param i (Row in question (in this case the number of the webpage considered))
+/// @return Returns total number of links from webpage i to every other webpage
+
+int count_links_from_page(int** matrix, int i)
+{
+    int page_count = 0;
+    for (int j = 0; j < SIZE; j++)
+    {
+        if (matrix[i][j] == 1)
+        {
+            page_count++;
+        }
+    }
+    return page_count;
+}
+
+
+/**
+ * @brief Normalize the ranks in the given array.
+ *
+ * This function takes an array of ranks and normalizes them by
+ * applying formula: new_value = current_value x DUMP_FACTOR + (1.0 - DUMP_FACTOR) / SIZE. 
+ *
+ * @param array The array of ranks to be normalized, assumed to be of size SIZE.
+ */
+
+void normalize_ranks(double* array)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        array[i] = DUMP_FACTOR * array[i] + (1.0 - DUMP_FACTOR) / ((double) SIZE);
+    }
 }
 
