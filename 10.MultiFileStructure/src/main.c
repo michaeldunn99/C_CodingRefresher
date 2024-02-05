@@ -11,11 +11,9 @@
  **/
 #include <stdio.h>
 #include <stdlib.h>
+#include <add_numbers.h>
 
-int add_numbers(int a, int b)
-{
-    return a + b;
-}
+
 
 /**
  * @brief Do not worry about understanding the "int main(...)" line for now. You
