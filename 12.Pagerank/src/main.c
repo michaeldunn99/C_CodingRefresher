@@ -12,9 +12,6 @@
 #include <stdlib.h>
 #include "constants.h"
 
-
-void initialise_adjacency_matrix(int** adjacency_matrix);
-
 /**
  * @brief This function contains the architecture of a pagerank application.
  * @details You have to declare and define the variables and functions used
@@ -45,10 +42,12 @@ int main(int argc, char* argv[])
     // Adjacency matrix - dynamically defined
      
     int** adjacency_matrix = (int **) malloc (SIZE * sizeof(int*));
+    //Check to make sure not NULL 
     if (adjacency_matrix == NULL)
     {
         return -1;
     }
+
     for (int i = 0; i < SIZE; i++)
     {
         adjacency_matrix[i] = (int*)malloc(SIZE * sizeof(int));
@@ -73,6 +72,34 @@ int main(int argc, char* argv[])
      * 
      * @details - MD Answer: intialized in function below.
      **/
+
+     /** 
+      * @brief Function that initializes the adjacency matrix
+      * @details This function accepts as parameter an int ** pointer to a 2x2 matrix and
+      * and sets the upper triangular values to 1 and the strict lower triangular values
+      * to 0. 
+      * */ 
+
+    /// @brief 
+    /// @param matrix 
+    void initialise_adjacency_matrix(int** matrix)
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                if (i > j)
+                {
+                    matrix[i][j] = 0;
+                }
+                else
+                {
+                    matrix[i][j] = 1;
+                }
+            }
+        }
+    }
+        
 
     initialise_adjacency_matrix(adjacency_matrix);
 
@@ -204,29 +231,4 @@ int main(int argc, char* argv[])
         //////////////////////
 
     return EXIT_SUCCESS;
-}
-
-/**
- * @brief Function that initializes the adjacency matrix
- * @details This function accepts as parameter an int ** pointer to a 2x2 matrix and
- * and sets the upper triangular values to 1 and the strict lower triangular values
- * to 0. 
-*/
-
-void initialise_adjacency_matrix(int** adjacency_matrix)
-{
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (i > j)
-            {
-                adjacency_matrix[i][j] = 0;
-            }
-            else
-            {
-                adjacency_matrix[i][j] = 1;
-            }
-        }
-    }
 }
